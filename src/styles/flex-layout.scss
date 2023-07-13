@@ -1,0 +1,96 @@
+.flex {
+  display: flex;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.flex-justify-content-center {
+  justify-content: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-space-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.flex-width-height-100 {
+  height: 100%;
+  width: 100%;
+}
+
+.flex-centralizar-vh {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-espaco {
+  flex: 1 1 auto;
+}
+
+// derivados
+
+.flex-row {
+  @extend .flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  @extend .flex;
+  flex-direction: column;
+}
+
+.flex-centralizar-vh-2 {
+  @extend .flex-width-height-100;
+  @extend .flex-column;
+  @extend .flex-centralizar-vh;
+}
+
+@mixin flex-size($size) {
+  @extend .flex;
+  flex: $size;
+}
+
+.f1 {
+  @include flex-size(1);
+}
+
+.f2 {
+  @include flex-size(2);
+}
+
+.f3 {
+  @include flex-size(3);
+}
+
+.f4 {
+  @include flex-size(4);
+}
+
+.f5 {
+  @include flex-size(5);
+}
+
+.f6 {
+  @include flex-size(6);
+}
+
+.f7 {
+  @include flex-size(7);
+}
+
+.f8 {
+  @include flex-size(8);
+}
