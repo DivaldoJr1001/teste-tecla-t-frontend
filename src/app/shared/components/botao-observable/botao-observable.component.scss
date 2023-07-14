@@ -1,0 +1,22 @@
+.botao-observable-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.botao-observable-container mat-icon {
+  margin-right: .5rem;
+}
+
+.rotate {
+  animation: infinite spin 1s;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}

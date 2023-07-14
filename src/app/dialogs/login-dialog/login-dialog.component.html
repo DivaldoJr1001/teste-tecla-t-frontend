@@ -1,1 +1,51 @@
-<p>login-dialog works!</p>
+<div class="outer-container">
+  <mat-tab-group>
+    <mat-tab label="Login">
+      <div class="tab-container">
+        <h1>Login</h1>
+        <div class="form-container" [formGroup]="loginForm">
+          <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input matInput formControlName="username" name="username">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" name="password" type="password">
+          </mat-form-field>
+
+          <div class="login-button">
+            <app-botao-observable [buttonType]="'mat-flat-button'" [buttonColor]="'#04e47c'" [textColor]="'black'" [buttonReactivates]="true" [observable]="loginObservable" [disabled]="!loginForm.valid" (subscriptionResult)="loginRes($event)" (click)="beginProcessing()">
+            </app-botao-observable>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Criar Conta">
+      <div class="tab-container">
+        <h1>Criar Conta</h1>
+        <div class="form-container" [formGroup]="signUpForm">
+          <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input matInput formControlName="username" name="username">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" name="password" type="password">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Confirmar senha</mat-label>
+            <input matInput formControlName="confirmPassword" name="password" type="password">
+          </mat-form-field>
+
+          <div class="sign-up-button">
+            <app-botao-observable [buttonType]="'mat-flat-button'" [buttonColor]="'#04e47c'" [textColor]="'black'" [buttonReactivates]="true" [observable]="signUpObservable" [disabled]="!signUpForm.valid || !matchingPasswords" (subscriptionResult)="signUpRes($event)" (click)="beginProcessing()">
+            </app-botao-observable>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

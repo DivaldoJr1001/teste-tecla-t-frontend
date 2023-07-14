@@ -2,9 +2,19 @@
   <div class="header mat-elevation-z5">
     <img class="logo" src="https://teclat.com.br/wp-content/uploads/2023/03/logo-e1678120166447-300x89.png" alt="logo"/>
 
-    <button mat-raised-button class="primary-button rounded-button">
-      Login
-    </button>
+    <div *ngIf="!(logado$ | async)">
+      <button mat-raised-button class="primary-button rounded-button login-button" (click)="openLoginDialog()">
+        Login
+      </button>
+    </div>
+    <div *ngIf="(logado$ | async)" class="logged-user">
+      <div class="username-text">
+        Usuário: {{ (username$ | async) }}
+      </div>
+      <button mat-raised-button class="primary-button rounded-button logout-button" (click)="logout()">
+        Logout
+      </button>
+    </div>
   </div>
 
   <div class="content">
@@ -21,7 +31,7 @@
   </div>
 
   <div class="footer mat-elevation-z5">
-    <div>Aplicação de teste com base na API de <a href="https://developer.themoviedb.org/docs">TMDB</a>.</div>
+    <div>Aplicação de teste com base na API de <a href="https://developer.themoviedb.org/docs">TMDB</a>. É possível criar um usuário e marcar ou desmarcar filmes com Curtir. Cada usuário só pode Curtir um filme específico uma vez.</div>
     <div>(Divaldo Aderaldo de Oliveira Júnior)</div>
   </div>
 </div>

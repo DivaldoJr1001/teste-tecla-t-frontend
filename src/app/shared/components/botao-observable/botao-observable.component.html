@@ -1,0 +1,15 @@
+<button mat-button class="botao-observable-container mat-btn-flex-center" (click)="buttonPressed()"
+  [class.mat-button]="buttonType === 'mat-button'"
+  [class.mat-flat-button]="buttonType === 'mat-flat-button'"
+  [disabled]="state != 'ready' || disabled"
+  [color]="buttonColorStyle"
+  [ngStyle]="{
+    'color': textColor,
+    'background-color': buttonColor
+}">
+  <mat-icon *ngIf="state == 'loading'" class="rotate">hourglass_empty</mat-icon>
+  <mat-icon *ngIf="state == 'success'">check_circle_outline</mat-icon>
+  <mat-icon *ngIf="state == 'failure'">highlight_off</mat-icon>
+
+  {{ buttonText }}
+</button>
