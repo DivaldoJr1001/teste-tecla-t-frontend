@@ -24,6 +24,13 @@ export class PopularMoviesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.updateList();
+    setInterval(() => {
+      this.updateList();
+    }, 10000);
+  }
+
+  updateList(): void {
     combineLatest([this.movieService.getAll(), this.topTenListService.getAll()]).subscribe({
       next: res => {
         const movies = res[0];
@@ -35,7 +42,7 @@ export class PopularMoviesComponent implements OnInit {
           this.moviesList$.next(filteredMoviesList);
           this.likedMovies$ = this.userDataService.getLikedMoviesObservable();
           this.loading$.next(false);
-        }, 2000);
+        }, 1000);
       }
     });
   }

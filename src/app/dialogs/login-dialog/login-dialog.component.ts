@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,6 +9,7 @@ import { UserService } from '../../../app/core/api/user.service';
 import { AuthService } from '../../../app/core/security/auth.service';
 import { User } from '../../../app/models/user.model';
 import { CustomValidators } from '../../../app/utils/custom.validators';
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-login-dialog',
@@ -16,6 +17,8 @@ import { CustomValidators } from '../../../app/utils/custom.validators';
   styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent implements OnInit {
+
+  @ViewChild("matTabGroup", { static: false }) matTabGroup!: MatTabGroup;
 
   processing: boolean = false;
 
@@ -104,8 +107,9 @@ export class LoginDialogComponent implements OnInit {
 
           this.snackbar.open('Já há um usuário com esse nome!', 'OK', {
             horizontalPosition: 'center',
-            // duration: 4000
+            duration: 4000
           });
+          this.signUpForm.reset();
           this.endProcessing();
         },
         error: _ => {
@@ -122,6 +126,7 @@ export class LoginDialogComponent implements OnInit {
         duration: 4000
       });
       this.signUpForm.reset();
+      this.matTabGroup.selectedIndex = 0;
       this.endProcessing();
     }
   }
