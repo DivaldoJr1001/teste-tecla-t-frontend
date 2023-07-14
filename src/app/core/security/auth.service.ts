@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from '../api/user.service';
+import { UserDataService } from '../utils/user-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  logado$ = new BehaviorSubject<boolean>(false);
-  username$ = new BehaviorSubject<string>('');
-  likedMovies$ = new BehaviorSubject<string[]>([]);
+  private loggedIn$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private jwt: JwtHelperService,
-    private userService: UserService
+    private userService: UserService,
+    private userDataService: UserDataService
   ) {
   }
 
@@ -41,22 +41,25 @@ export class AuthService {
 
   fetchUserInfo(username: string, token: string): void {
     this.userService.getUser(username).subscribe(u => {
-      this.username$.next(username);
+      this.userDataService.setUsername(username);
       localStorage.setItem(StorageData.username, username);
 
-      this.likedMovies$.next(u.likedMovies || []);
+      this.userDataService.setLikedMovies(u.liked_movies || []);
       this.saveAuthToken(token);
 
-      this.logado$.next(true);
+      this.loggedIn$.next(true);
     });
   }
 
   clearValues(): void {
     localStorage.removeItem(StorageData.username);
     localStorage.removeItem(StorageData.token);
-    this.logado$.next(false);
-    this.username$.next('');
-    this.likedMovies$.next([]);
+    this.loggedIn$.next(false);
+    this.userDataService.clearData();
+  }
+
+  getLoggedInObservable(): BehaviorSubject<boolean> {
+    return this.loggedIn$;
   }
 }
 

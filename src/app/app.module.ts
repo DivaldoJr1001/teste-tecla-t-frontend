@@ -12,7 +12,7 @@ import { AuthService } from './core/security/auth.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/inteceptors/auth.interceptor';
 import { DialogsModule } from './dialogs/dialogs.module';
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ComponentsModule } from './shared/components/components.module';
 
 export const appModuleDeclarations = [
   AppComponent,
@@ -27,7 +27,8 @@ export const appModuleImports = [
   BrowserAnimationsModule,
   HttpClientModule,
   VisualModule,
-  DialogsModule
+  DialogsModule,
+  ComponentsModule
 ];
 
 export const appModuleProviders = [
