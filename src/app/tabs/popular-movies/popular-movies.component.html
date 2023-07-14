@@ -1,1 +1,9 @@
-<p>popular-movies works!</p>
+<div class="outer-container">
+  <div class="loading-spinner" *ngIf="(loading$ | async)">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="movie-card" *ngFor="let movie of (moviesList$ | async)">
+    <app-movie-card [movie]="movie" [likedMovies$]="likedMovies$"></app-movie-card>
+  </div>
+</div>

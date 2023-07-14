@@ -22,6 +22,7 @@
   border-top: solid 1px var(--primary-color);
   padding: 1rem;
   box-sizing: border-box;
+  overflow: auto;
 }
 
 .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label, .mdc-text-field--disabled .mdc-floating-label {
@@ -51,5 +52,9 @@
 }
 
 .mat-mdc-snack-bar-container .mdc-snackbar__surface {
-  background-color: var(--primary-color) !important;
+  background-color: white !important;
+}
+
+.mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: var(--primary-color) !important;
 }

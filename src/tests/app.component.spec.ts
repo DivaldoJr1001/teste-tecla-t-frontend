@@ -44,7 +44,7 @@ describe('AppComponent', () => {
   it('Botão de Logout', () => {
     component.logout = jest.fn()
 
-    component.logado$.next(true);
+    component.loggedIn$.next(true);
     fixture.detectChanges();
 
     const logoutButton: HTMLButtonElement = fixture.nativeElement.querySelector('.logout-button');

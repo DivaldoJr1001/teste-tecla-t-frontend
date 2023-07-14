@@ -1,0 +1,55 @@
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .movie-poster-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 330px;
+    width: 220px;
+
+    .movie-poster-image {
+      position: relative;
+      top: 0;
+      left: 0;
+    }
+
+    .movie-likes-tag {
+      display: flex;
+      flex-direction: row;
+      position: absolute;
+      float: left;
+      bottom: -1rem;
+      right: 1rem;
+      width: 4rem;
+      height: 2rem;
+      border: solid 1px;
+      background-color: white;
+      border-radius: 10px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 0.5rem;
+      box-sizing: border-box;
+
+      .like-button {
+        display: flex;
+        cursor: pointer;
+      }
+
+      .like-button:hover {
+        opacity: 0.7;
+      }
+
+      .liked {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .movie-title {
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+}

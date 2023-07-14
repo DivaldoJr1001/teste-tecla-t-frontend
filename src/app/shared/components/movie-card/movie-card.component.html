@@ -1,0 +1,26 @@
+<div class="outer-container">
+  <div class="movie-poster-container">
+    <img class="movie-poster-image" [src]="imageUrl + movie.poster_path" />
+
+    <div class="movie-likes-tag">
+      <div class="like-button" [class.liked]="liked" (click)="likeMovie()">
+        <mat-icon>thumb_up</mat-icon>
+      </div>
+      <div class="like-count">
+        {{ movie.likes_count }}
+      </div>
+    </div>
+  </div>
+
+  <div class="movie-title">
+    {{ movie.title }}
+  </div>
+
+  <div class="movie-release-date">
+    [{{ getGenres() }}]
+  </div>
+
+  <div class="movie-release-date">
+    {{ movie.release_date }}
+  </div>
+</div>
