@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, of, OperatorFunction, throwError, timer } from 'rxjs';
-import { catchError, mergeMap, retry, retryWhen } from 'rxjs/operators';
+import { catchError, mergeMap, retryWhen } from 'rxjs/operators';
+import { environment } from '../../../environment/environment';
 
 
 @Injectable({ providedIn: 'root' })
 export abstract class ApibaseService {
 
-  prefixoUrl = 'api';
+  prefixoUrl = environment.apiUrl;
   urlFunction: string = '';
   errorCodes: number[] = [500, 404, 400, 401, 502];
 
@@ -179,7 +180,7 @@ export const genericRetryStrategy = ({ maxRetryAttempts = 5, scalingDuration = 1
         retryAttempt > maxRetryAttempts ||
         excludedStatusCodes.find((e: number) => e === error.status)
       ) {
-        return throwError(() => error);;
+        return throwError(() => error);
       }
 
       return timer(retryAttempt * scalingDuration);
