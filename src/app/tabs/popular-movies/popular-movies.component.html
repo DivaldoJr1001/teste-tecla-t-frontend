@@ -3,7 +3,9 @@
     <mat-spinner></mat-spinner>
   </div>
 
-  <div class="movie-card" *ngFor="let movie of (moviesList$ | async)">
-    <app-movie-card [movie]="movie" [likedMovies$]="likedMovies$"></app-movie-card>
+  <div class="movie-cards-container" *ngIf="!(loading$ | async)">
+    <div class="movie-card" *ngFor="let movie of (moviesList$ | async)">
+      <app-movie-card [movie]="movie" [likedMovies$]="likedMovies$"></app-movie-card>
+    </div>
   </div>
 </div>

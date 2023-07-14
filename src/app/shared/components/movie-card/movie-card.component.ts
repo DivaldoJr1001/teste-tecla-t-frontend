@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, combineLatest, first } from 'rxjs';
 import { MovieService } from '../../../../app/core/api/movie.service';
@@ -6,6 +6,7 @@ import { AuthService } from '../../../../app/core/security/auth.service';
 import { UserDataService } from '../../../../app/core/utils/user-data.service';
 import { Movie } from '../../../../app/models/movie.model';
 import { environment } from '../../../../environment/environment';
+import { LikeTriggerService } from '../../../../app/core/utils/like-trigger.service';
 
 @Component({
   selector: 'app-movie-card',
@@ -18,7 +19,8 @@ export class MovieCardComponent implements OnInit {
     private movieService: MovieService,
     private userDataService: UserDataService,
     private authService: AuthService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private likeTriggerService: LikeTriggerService
   ) { }
 
   @Input() movie!: Movie;
@@ -93,6 +95,7 @@ export class MovieCardComponent implements OnInit {
   endProcessingLike(): void {
     setTimeout(() => {
       this.processingLike = false;
+      this.likeTriggerService.getLikeTrigger().emit();
     }, 500);
   }
 }

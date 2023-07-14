@@ -1,5 +1,6 @@
 import 'zone.js';
 import 'zone.js/testing';
+import "@angular/compiler";
 import { ComponentFixture, TestBedStatic } from '@angular/core/testing';
 import { PopularMoviesComponent } from '../../app/tabs/popular-movies/popular-movies.component';
 import { TestBedInitializer } from '../test-bed-initializer';

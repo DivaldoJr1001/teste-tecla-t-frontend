@@ -40,14 +40,19 @@ export class AuthService {
   }
 
   fetchUserInfo(username: string, token: string): void {
-    this.userService.getUser(username).subscribe(u => {
-      this.userDataService.setUsername(username);
-      localStorage.setItem(StorageData.username, username);
+    this.userService.getUser(username).subscribe({
+      next: u => {
+        this.userDataService.setUsername(username);
+        localStorage.setItem(StorageData.username, username);
 
-      this.userDataService.setLikedMovies(u.liked_movies || []);
-      this.saveAuthToken(token);
+        this.userDataService.setLikedMovies(u.liked_movies || []);
+        this.saveAuthToken(token);
 
-      this.loggedIn$.next(true);
+        this.loggedIn$.next(true);
+      },
+      error: _ => {
+        this.clearValues();
+      }
     });
   }
 

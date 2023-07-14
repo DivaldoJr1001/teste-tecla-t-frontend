@@ -15,7 +15,7 @@ export class MovieLikesService extends ApibaseService {
     super(http);
   }
 
-  getAll(): Observable<Movie> {
-    return super.get<Movie>();
+  getAll(): Observable<Movie[]> {
+    return super.get<Movie[]>();
   }
 }

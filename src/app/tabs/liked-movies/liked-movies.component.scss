@@ -1,0 +1,14 @@
+.outer-container, .movie-cards-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
+  overflow: auto;
+}
+
+.movie-card {
+  padding: 1rem;
+  box-sizing: border-box;
+}
